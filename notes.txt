@@ -1,0 +1,4 @@
+notes.txt
+
+pipenv install git+https://github.com/m-labs/nmigen.git#egg=nmigen
+pipenv install git+https://github.com/m-labs/nmigen-boards.git#egg=nmigen-boards
