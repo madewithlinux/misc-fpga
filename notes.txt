@@ -1,4 +1,55 @@
 notes.txt
 
+compiled and installed yosys 0.9 (it was easy)
+install icestorm
+sudo apt-get install build-essential clang bison flex libreadline-dev \
+gawk tcl-dev libffi-dev git mercurial graphviz   \
+xdot pkg-config python python3 libftdi-dev \
+qt5-default python3-dev libboost-all-dev cmake
+git clone https://github.com/cliffordwolf/icestorm.git icestorm
+cd icestorm
+make -j$(nproc)
+sudo make install
+install nextpnr-ice40
+git clone git@github.com:YosysHQ/nextpnr.git
+cd nextpnr
+sudo apt install cmake
+sudo apt install qtbase5-dev
+sudo apt install libeigen3-dev
+sudo apt install libboost-iostreams1.65-dev
+# sudo apt install python3-dev
+# sudo apt install python3.6-dev
+cmake -DARCH=ice40 .
+make -j$(nproc)
+sudo make install
+
+
 pipenv install git+https://github.com/m-labs/nmigen.git#egg=nmigen
 pipenv install git+https://github.com/m-labs/nmigen-boards.git#egg=nmigen-boards
+
+sudo apt install gtkwave
+
+
+
+https://github.com/enjoy-digital/litex
+
+micropython on fpga
+https://fupy.github.io/
+
+
+verilog tutorial
+http://www.asic-world.com/verilog/veritut.html
+http://www.asic-world.com/verilog/verilog_one_day4.html
+
+
+nmigen tutorial
+https://github.com/RobertBaruch/nmigen-tutorial
+
+
+tinyfpga BX nmigen platform
+https://github.com/m-labs/nmigen-boards/blob/master/nmigen_boards/tinyfpga_bx.py
+
+
+uart
+https://en.wikipedia.org/wiki/Universal_asynchronous_receiver-transmitter
+
