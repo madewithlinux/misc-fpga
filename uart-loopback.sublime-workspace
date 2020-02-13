@@ -1,0 +1,546 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"uart",
+				"uart_clk"
+			],
+			[
+				"rx",
+				"rx_strobe"
+			],
+			[
+				"out",
+				"output_pin"
+			],
+			[
+				"mono",
+				"monotonic_ns_interval"
+			],
+			[
+				"random",
+				"random_walk_color"
+			],
+			[
+				"cyc",
+				"cycles"
+			],
+			[
+				"cycl",
+				"cycles_per_color"
+			],
+			[
+				"pixel",
+				"mm_per_pixel"
+			],
+			[
+				"gco",
+				"gcode_width"
+			],
+			[
+				"image",
+				"image_width"
+			],
+			[
+				"norma",
+				"normalize_image_coordinate"
+			],
+			[
+				"poo",
+				"point_count"
+			],
+			[
+				"pol",
+				"polygon"
+			],
+			[
+				"po",
+				"polygons"
+			],
+			[
+				"filena",
+				"filename_pgm"
+			],
+			[
+				"potra",
+				"potrace_path"
+			],
+			[
+				"max",
+				"max_acceleration"
+			],
+			[
+				"movet",
+				"move_to_normalized"
+			],
+			[
+				"an",
+				"angle"
+			],
+			[
+				"move",
+				"move_to"
+			],
+			[
+				"anc",
+				"anchor_A_y"
+			],
+			[
+				"sta",
+				"start_link"
+			],
+			[
+				"mya",
+				"my_app_dog"
+			],
+			[
+				"my_a",
+				"my_app_sup"
+			],
+			[
+				"S",
+				"SERVER"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"veri",
+				"Set Syntax: Verilog"
+			],
+			[
+				"verilog",
+				"Set Syntax: Verilog"
+			],
+			[
+				"packinst",
+				"Package Control: Install Package"
+			],
+			[
+				"side",
+				"View: Toggle Side Bar"
+			],
+			[
+				"save pro",
+				"Project: Save As"
+			],
+			[
+				"side bar",
+				"View: Toggle Side Bar"
+			],
+			[
+				"env",
+				"Snippet: #!/usr/bin/env"
+			],
+			[
+				"upper",
+				"Convert Case: Upper Case"
+			],
+			[
+				"bash",
+				"Set Syntax: Bourne Again Shell (bash)"
+			],
+			[
+				"wrap",
+				"Word Wrap: Toggle"
+			],
+			[
+				"menu",
+				"View: Toggle Menu"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"ewnv",
+				"File: New View into File"
+			],
+			[
+				"compile",
+				"Deviot: Compile"
+			],
+			[
+				"Deviot: env",
+				"Deviot: Select Environment"
+			],
+			[
+				"Deviot: compil",
+				"Deviot: Compile"
+			],
+			[
+				"Deviot: select ",
+				"Deviot: Select Board"
+			],
+			[
+				"platformio",
+				"Deviot: Use PlatformIO Structure"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"pref",
+				"Preferences: Settings"
+			],
+			[
+				"erla",
+				"Set Syntax: Erlang"
+			],
+			[
+				"ssnerla",
+				"Set Syntax: Erlang"
+			],
+			[
+				"diff",
+				"Set Syntax: Diff"
+			],
+			[
+				"title",
+				"Convert Case: Title Case"
+			],
+			[
+				"lower",
+				"Convert Case: Lower Case"
+			],
+			[
+				"clojure",
+				"Set Syntax: Clojure"
+			],
+			[
+				"python",
+				"Set Syntax: Python"
+			],
+			[
+				"fold",
+				"Code Folding: Unfold All"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/j0sh/Documents/projects/tinyfpgaBX/uart-loopback"
+	],
+	"file_history":
+	[
+		"/home/j0sh/Documents/projects/tinyfpgaBX/nmigen/nmigen/_utils.py",
+		"/home/j0sh/Documents/projects/tinyfpgaBX/nmigen/nmigen/lib/coding.py",
+		"/home/j0sh/Documents/projects/tinyfpgaBX/nmigen/nmigen/lib/cdc.py",
+		"/home/j0sh/Documents/projects/tinyfpgaBX/nmigen/nmigen/lib/io.py",
+		"/home/j0sh/Documents/projects/tinyfpgaBX/nmigen/examples/basic/cdc.py",
+		"/home/j0sh/Documents/projects/tinyfpgaBX/nmigen/nmigen/compat/fhdl/structure.py",
+		"/home/j0sh/Documents/projects/tinyfpgaBX/nmigen/UART.py",
+		"/home/j0sh/Documents/projects/tinyfpgaBX/nmigen/nmigen/build/res.py",
+		"/home/j0sh/Documents/projects/tinyfpgaBX/nmigen/nmigen/build/plat.py",
+		"/home/j0sh/Documents/projects/tinyfpgaBX/nmigen/examples/basic/gpio.py",
+		"/home/j0sh/Documents/projects/tinyfpgaBX/nmigen/examples/board/02_domain.py",
+		"/home/j0sh/Documents/projects/tinyfpgaBX/nmigen/nmigen/back/pysim.py",
+		"/home/j0sh/Documents/projects/tinyfpgaBX/nmigen/nmigen/hdl/xfrm.py",
+		"/home/j0sh/Documents/projects/tinyfpgaBX/nmigen/nmigen/hdl/ast.py",
+		"/home/j0sh/Documents/projects/tinyfpgaBX/nmigen/nmigen/hdl/dsl.py",
+		"/home/j0sh/Documents/projects/tinyfpgaBX/nmigen/nmigen/hdl/ir.py",
+		"/home/j0sh/Documents/projects/tinyfpgaBX/nmigen/nmigen/hdl/cd.py",
+		"/home/j0sh/Documents/projects/tinyfpgaBX/nmigen/examples/basic/pmux.py",
+		"/home/j0sh/Documents/projects/tinyfpgaBX/nmigen/examples/basic/fsm.py",
+		"/home/j0sh/Documents/projects/tinyfpgaBX/nmigen/examples/basic/ctr_en.py",
+		"/home/j0sh/Documents/projects/tinyfpgaBX/nmigen/examples/basic/uart.py",
+		"/home/j0sh/Documents/projects/tinyfpgaBX/nmigen/examples/basic/arst.py",
+		"/home/j0sh/Documents/projects/tinyfpgaBX/nmigen/examples/basic/ctr.py",
+		"/home/j0sh/Documents/projects/tinyfpgaBX/nmigen/examples/basic/por.py",
+		"/media/j0sh/CIRCUITPY/lib/adafruit_pybadger.py",
+		"/home/j0sh/advancedsettings.xml",
+		"/media/j0sh/CIRCUITPY/code.py",
+		"/home/j0sh/Documents/code/dotfiles/bash_profile.sh",
+		"/home/j0sh/.bashrc",
+		"/home/j0sh/Documents/projects/supercon-badge/hadbadge2019_workshops/basic/app-basic-workshop/main.c",
+		"/home/j0sh/Documents/projects/supercon-badge/hadbadge2019_workshops/advanced/Makefile",
+		"/home/j0sh/Documents/code/dotfiles/tmux.conf",
+		"/media/j0sh/CIRCUITPY/boot_out.txt",
+		"/home/j0sh/Documents/projects/supercon-badge/hadbadge2019_fpgasoc/app-helloworld/tilemap.tmx",
+		"/media/j0sh/CIRCUITPY/lib/neopixel.mpy",
+		"/home/j0sh/Documents/projects/supercon-badge/hadbadge2019_fpgasoc/app-helloworld/main.c",
+		"/home/j0sh/Documents/projects/adafruit-edgebadge/PyBadge_Conference_Badge/code.py",
+		"/home/j0sh/Documents/projects/supercon-badge/ecp5-toolchain-linux_x86_64-v1.6.2/env.sh",
+		"/home/j0sh/Documents/code/3d_printing/klipper_config.txt",
+		"/home/j0sh/octopi/printer.cfg",
+		"/home/j0sh/Downloads/things/hypercube/Hypercube_Evolution_Nut_Remix/files/left_side_plate_b.gcode",
+		"/home/j0sh/Downloads/things/hypercube/gcode/x_axis_stress.g",
+		"/home/j0sh/Downloads/things/hypercube/gcode/test_xy.g",
+		"/home/j0sh/Downloads/things/hypercube/gcode/z_up_down.g",
+		"/media/j0sh/boot/octopi-wpa-supplicant.txt",
+		"/home/j0sh/Documents/code/3d_printing/gcode_making_scripts/image_to_curves.py",
+		"/home/j0sh/Documents/code/3d_printing/gcode_making_scripts/image_kinematics.py",
+		"/home/j0sh/Documents/code/3d_printing/gcode_making_scripts/coordinate_transformer.py",
+		"/home/j0sh/Documents/code/3d_printing/gcode_making_scripts/image_to_waves.py",
+		"/media/j0sh/PRUSAI3MK3/test_mmu.g",
+		"/home/j0sh/Documents/code/3d_printing/Marlin-1.1.x-drawbot/Marlin/Configuration.h",
+		"/home/j0sh/Documents/code/3d_printing/gcode_making_scripts/images/out.json",
+		"/home/j0sh/Documents/code/3d_printing/gcode_making_scripts/trace_image.py",
+		"/home/j0sh/Documents/code/3d_printing/gcode_making_scripts/trace_image.g",
+		"/home/j0sh/Documents/code/3d_printing/gcode_making_scripts/images/out.svg",
+		"/home/j0sh/Documents/code/3d_printing/gcode_making_scripts/run.sh",
+		"/home/j0sh/Documents/code/3d_printing/gcode_making_scripts/gcode.py",
+		"/home/j0sh/Documents/code/3d_printing/gcode_making_scripts/dragon_curve.py",
+		"/home/j0sh/Documents/code/3d_printing/gcode_making_scripts/image_to_waves.g",
+		"/home/j0sh/Downloads/apartment lease 2019.07/notes.txt",
+		"/home/j0sh/Documents/code/3d_printing/duet_wifi_config.json",
+		"/media/j0sh/1521-F7A2/config",
+		"/home/j0sh/Documents/code/3d_printing/gcode_making_scripts/points_from_csv.py",
+		"/home/j0sh/Documents/code/3d_printing/gcode_making_scripts/rose.py",
+		"/home/j0sh/Documents/code/3d_printing/gcode_making_scripts/circle.py",
+		"/home/j0sh/Documents/code/3d_printing/mks_sgen_smoothieware_config.txt",
+		"/home/j0sh/Documents/code/tsp-art/code/Seg.py",
+		"/home/j0sh/Documents/code/tsp-art/code/CleanUp.py",
+		"/home/j0sh/Documents/code/tsp-art/code/TSPArt.py",
+		"/home/j0sh/Downloads/things/Parametrical_Bearing_for_Air_Soft_BB/files/Parametrical_Airsoft-Bearing_v1.2.scad",
+		"/home/j0sh/Documents/code/tsp-art/code/NN.py",
+		"/home/j0sh/Documents/code/tsp-art/code/points.csv",
+		"/home/j0sh/Documents/code/3d_printing/gcode_making_scripts/turtle.py",
+		"/home/j0sh/Documents/code/3d_printing/gcode_making_scripts/rose.g",
+		"/home/j0sh/Downloads/Makelangelo/run.sh",
+		"/home/j0sh/test.properties.txt",
+		"/home/j0sh/Documents/code/3d_printing/gcode_making_scripts/dragon_curve.g",
+		"/home/j0sh/test.g",
+		"/home/j0sh/printer.cfg",
+		"/media/j0sh/1521-F7A2/on_boot.g",
+		"/home/j0sh/Documents/code/3d_printing/gcode_making_scripts/circle.g",
+		"/media/j0sh/1521-F7A2/circle.g",
+		"/home/j0sh/Documents/code/klipper/startup.sh",
+		"/media/j0sh/disk/config",
+		"/home/j0sh/Documents/code/Smoothieware/ConfigSamples/Smoothieboard/config",
+		"/home/j0sh/Documents/code/klipper/scripts/install-octopi.sh",
+		"/home/j0sh/Documents/code/klipper/startip.sh",
+		"/home/j0sh/Documents/code/klipper/config/example.cfg",
+		"/home/j0sh/Documents/code/klipper/scripts/install-",
+		"/home/j0sh/Downloads/things/drawbot/files/50mm square.gcode",
+		"/home/j0sh/Documents/code/3d_printing/Marlin-1.1.9-drawbot/Marlin/Configuration.h",
+		"/home/j0sh/Downloads/FlatCAM_beta_8.917_sources/setup_ubuntu.sh",
+		"/home/j0sh/Documents/code/3d_printing/marlin-cr10s/Marlin/example_configurations/SCARA/Configuration_adv.h",
+		"/home/j0sh/Documents/code/3d_printing/marlin-cr10s/Marlin/example_configurations/SCARA/Configuration.h",
+		"/home/j0sh/Documents/code/3d_printing/marlin-cr10s/Marlin/Configuration.h",
+		"/home/j0sh/Downloads/erlang_class_2019.05.14/something.erl",
+		"/home/j0sh/Documents/code/qmk_firmware/keyboards/keebio/iris/keymaps/madewithlinux/keymap.c",
+		"/home/j0sh/Downloads/config.ini",
+		"/home/j0sh/Documents/code/qmk_firmware/keyboards/kbdfans/kbd75/keymaps/madewithlinux/keymap.c",
+		"/tmp/.2847.gcode.tmp",
+		"/home/j0sh/Downloads/filament spacer for inland - Part 1.gcode",
+		"/home/j0sh/Downloads/stringing and heat test.gcode",
+		"/home/j0sh/Downloads/erlang_class/my_app/src/my_app_cat.erl",
+		"/home/j0sh/Downloads/stringing and heat test k0.05.gcode",
+		"/home/j0sh/Downloads/erlang_class/my_app/rebar.config",
+		"/home/j0sh/Downloads/erlang_class/my_app/src/my_app_app.erl",
+		"/home/j0sh/Downloads/erlang_class/my_app/src/my_app_sup.erl",
+		"/home/j0sh/Downloads/erlang_class/my_app/src/my_app_dog.erl",
+		"/home/j0sh/Documents/code/3d_printing/config.ini",
+		"/home/j0sh/Downloads/stringing and heat test 2.gcode",
+		"/home/j0sh/Downloads/stringing_test.gcode",
+		"/home/j0sh/Downloads/erlang_class/my_app/src/my_app.app.src",
+		"/home/j0sh/Downloads/Slic3r_config_bundle.ini",
+		"/home/j0sh/Downloads/things/Dehydrator_Tray_Extension_for_Westinghouse_WFD100W_Single_part/files/Dehydrator_spool_spacer.gcode",
+		"/home/j0sh/robot.erl",
+		"/home/j0sh/Downloads/Dehydrator_spool_spacer (1).gcode",
+		"/home/j0sh/a.erl",
+		"/home/j0sh/b.erl",
+		"/home/j0sh/Downloads/Dehydrator_spool_spacer.gcode",
+		"/home/j0sh/Documents/code/3d_printing/marlin-cr10s/Marlin/ultralcd_impl_DOGM.h",
+		"/home/j0sh/power_log.py",
+		"/home/j0sh/Documents/code/upower-python/upower_python/upower.py",
+		"/home/j0sh/power_log.sh",
+		"/home/j0sh/power_log.txt",
+		"/home/j0sh/test.hy",
+		"/home/j0sh/.bashrc_local"
+	],
+	"find":
+	{
+		"height": 48.0
+	},
+	"find_in_files":
+	{
+		"height": 128.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 48.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.deviot":
+	{
+		"height": 387.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "uart-loopback.sublime-project",
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"uart",
+				"UART.py"
+			],
+			[
+				"blink",
+				"examples/board/01_blinky.py"
+			],
+			[
+				"image to cur",
+				"image_to_curves.py"
+			],
+			[
+				"image to wave",
+				"image_to_waves.py"
+			],
+			[
+				"image kinema",
+				"image_kinematics.py"
+			],
+			[
+				"coordina",
+				"coordinate_transformer.py"
+			],
+			[
+				"imagekin",
+				"image_kinematics.py"
+			],
+			[
+				"imagetowa",
+				"image_to_waves.py"
+			],
+			[
+				"reba",
+				"rebar.config"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 283.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

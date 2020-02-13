@@ -8,117 +8,108 @@ from nmigen_examples_uart import *
 
 
 class UARTLoopback(Elaboratable):
-    def __init__(self,
-            uart_pins,
-            led,
-            odata):
-        self.uart = UART(divisor=int(16e6//9600))
-        # uart_pins = platform.request("uart")
-        # led = platform.request("led", 0)
-        # odata  = platform.request('outpins', 0)
-        self.uart_pins = uart_pins
-        self.led = led
-        self.odata  = odata
+    def __init__(self, divisor=int(16e6//9600)):
+        self.uart = UART(divisor=divisor)
+        self.uart_tx = Signal()
+        self.uart_rx = Signal()
 
     def elaborate(self, platform):
         m = Module()
-        uart_pins = self.uart_pins
-        led = self.led
-        odata = self.odata
 
         uart = self.uart
         m.submodules += uart
-        
-        timer = Signal(20)
-        empty = Signal(1, reset=1)
-        data = Signal(8, reset=0xaa)
 
-        m.d.sync += timer.eq(timer + 1)
-        # m.d.comb += led.o.eq(timer[-1])
+        m.d.comb += uart.rx_i.eq(self.uart_rx)
+        m.d.comb += self.uart_tx.eq(uart.tx_o)
 
-        m.d.comb += uart.rx_i.eq(uart_pins.rx)
-        m.d.comb += uart_pins.tx.eq(uart.tx_o)
+        data = Signal(8)
+        with m.FSM() as fsm:
+            with m.State("WAIT_RX_LOW"):
+                with m.If(~uart.rx_rdy):
+                    m.d.sync += uart.rx_ack.eq(0)
+                    m.next = "WAIT_TO_RX"
 
-        m.d.comb += odata.o[0].eq(empty)
-        m.d.comb += odata.o[1].eq(uart.tx_ack)
-        m.d.comb += odata.o[2].eq(uart.tx_rdy)
-        m.d.comb += odata.o[3].eq(uart.rx_ack)
-        m.d.comb += odata.o[4].eq(uart.rx_rdy)
+            with m.State("WAIT_TO_RX"):
+                with m.If(uart.rx_rdy):
+                    m.d.sync += data.eq(uart.rx_data)
+                    m.d.sync += uart.rx_ack.eq(1)
+                    m.next = "DO_TX"
 
-        with m.If(~empty):
-            m.d.sync += uart.rx_ack.eq(0)
-        with m.Elif(uart.rx_rdy & empty):
-            m.d.sync += empty.eq(0)
-            m.d.sync += data.eq(uart.rx_data)
-            m.d.sync += uart.rx_ack.eq(1)
+            with m.State("DO_TX"):
+                m.d.comb += uart.tx_rdy.eq(1)
+                m.d.comb += uart.tx_data.eq(data)
+                m.next = "WAIT_FOR_TX_ACK"
 
-        # with m.If(uart.tx_ack):
-        #     m.d.sync += empty.eq(1)
-            # m.d.sync += uart.tx_rdy.eq(0)
-
-        with m.If(uart.tx_rdy):
-            m.d.sync += uart.tx_rdy.eq(0)
-        with m.Elif((~empty) & uart.tx_ack):
-            m.d.sync += uart.tx_rdy.eq(1)
-            m.d.sync += uart.tx_data.eq(data)
-            m.d.sync += empty.eq(1)
-
-
-        # m.d.comb += [
-        #     uart.tx_data.eq(0x61),
-        #     uart.tx_rdy.eq(timer[-1])
-        # ]
-
-        m.d.comb += led.eq(uart.tx_ack)
+            with m.State("WAIT_FOR_TX_ACK"):
+                with m.If(uart.tx_ack):
+                    m.next = "WAIT_RX_LOW"
 
         return m
 
 
-# if __name__ == "__main__":
+def simulate():
+    uart_baud = 9600
+    sim_clock_freq = uart_baud * 4
+    from nmigen.back.pysim import Simulator, Delay, Settle
+    m = Module()
+    uart_tx = Signal()
+    uart_rx = Signal()
+    m.submodules.uart_loopback = uart_loopback = UARTLoopback(divisor=int(sim_clock_freq/uart_baud))
+    m.d.comb += uart_tx.eq(uart_loopback.uart_tx)
+    m.d.comb += uart_loopback.uart_rx.eq(uart_rx)
+
+    sim = Simulator(m)
+    sim.add_clock(1/sim_clock_freq, domain="sync")
+
+    uart_tick = Delay(1/uart_baud)
+    def process():
+        rx = uart_rx
+        yield rx.eq(1)
+        yield uart_tick
+        for i in range(4):
+            # start bit
+            yield rx.eq(0)
+            yield uart_tick
+            # 8 data bits
+            for i in range(1,9):
+                yield rx.eq(i % 2 == 1)
+                yield uart_tick
+            # one stop bit
+            yield rx.eq(1)
+            yield uart_tick
+            # pause
+            for i in range(30):
+                yield uart_tick
+
+    sim.add_process(process) # or sim.add_sync_process(process), see below
+    with sim.write_vcd("test.vcd", "test.gtkw", traces=[uart_tx, uart_rx]):
+        sim.run()
+
 def synthesize():
     platform = TinyFPGABXPlatform()
-    
     platform.add_resources([UARTResource("uart", 0,
         rx="A9", # 18
         tx="C9", # 17
     )])
-    uart_pins = platform.request("uart")
+    platform.add_resources([UARTResource("uart", 1,
+        rx="A2", # pin 1
+        tx="A1", # pin 2
+    )])
+
+    class Top(Elaboratable):
+        def elaborate(self, platform):
+            uart_pins = platform.request("uart", 0)
+            uart_pins2 = platform.request("uart", 1)
+            m = Module()
+            m.submodules.uart_loopback = uart_loopback = UARTLoopback(divisor=int(16e6/115200))
+            m.d.comb += uart_pins.tx.eq(uart_loopback.uart_tx)
+            m.d.comb += uart_pins2.tx.eq(uart_loopback.uart_tx)
+            m.d.comb += uart_loopback.uart_rx.eq(uart_pins.rx & uart_pins2.rx)
+            return m
     
-    led = platform.request("led", 0)
+    platform.build(Top(), do_program=True)
 
-    # outpins = [ Resource("outpins", 0, Pins("A2 A1 B1 C2 C1 D2 D1 E2 E1 G2 H1 J1 H2"), Attrs(IO_STANDARD="SB_LVCMOS")) ]
-    outpins = [ Resource("outpins", 0, Pins("A2 A1 B1 C2 C1 D2 D1 E2 E1 G2 H1 J1 H2")) ]
-    platform.add_resources(outpins)
-    odata  = platform.request('outpins', 0)
-    
-    platform.build(UARTLoopback(uart_pins, led, odata), do_program=True)
-
-
-if __name__ == "__main__":
-    from nmigen.back.pysim import Simulator, Delay, Settle
-    m = Module()
-    uart_pins = signal()
-    led = signal()
-    odata = signal()
-    m.submodules.uart_loopback = uart_loopback = UARTLoopback(uart_pins, led, odata)
-
-    sim = Simulator(m)
-    sim.add_clock(1e-6, domain="fast_clock")
-
-    uart_tick = Delay(1/9600)
-    def process():
-        rx = uart_loopback.uart.rx_i
-        yield x.eq(0)
-        yield uart_tick
-        for i in range(8):
-            yield x.eq(i % 2 == 0)
-            yield uart_tick
-        yield x.eq(0)
-        yield uart_tick
-        yield uart_tick
-        yield uart_tick
-
-    sim.add_process(process) # or sim.add_sync_process(process), see below
-    with sim.write_vcd("test.vcd", "test.gtkw", traces=[uart_loopback.uart.rx_i, uart_loopback.uart.tx_o]):
-        sim.run()
+if __name__ == '__main__':
+    # simulate()
+    synthesize()
 
