@@ -4,12 +4,20 @@
 		"selected_items":
 		[
 			[
+				"sim",
+				"sim"
+			],
+			[
+				"tx",
+				"tx_ack"
+			],
+			[
 				"uart",
-				"uart_clk"
+				"uart_baud"
 			],
 			[
 				"rx",
-				"rx_strobe"
+				"rx_i"
 			],
 			[
 				"out",
@@ -107,6 +115,42 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "Pipfile",
+			"settings":
+			{
+				"buffer_size": 278,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "nmigen_examples_uart.py",
+			"settings":
+			{
+				"buffer_size": 4454,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "uart_loopback.py",
+			"settings":
+			{
+				"buffer_size": 3474,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "notes.txt",
+			"settings":
+			{
+				"buffer_size": 1368,
+				"encoding": "UTF-8",
+				"line_ending": "Unix",
+				"name": "notes.txt"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -120,20 +164,24 @@
 		"selected_items":
 		[
 			[
+				"packinst",
+				"Package Control: Install Package"
+			],
+			[
+				"align",
+				"Preferences: Alignment Key Bindings – Default"
+			],
+			[
+				"side",
+				"View: Toggle Side Bar"
+			],
+			[
 				"veri",
 				"Set Syntax: Verilog"
 			],
 			[
 				"verilog",
 				"Set Syntax: Verilog"
-			],
-			[
-				"packinst",
-				"Package Control: Install Package"
-			],
-			[
-				"side",
-				"View: Toggle Side Bar"
 			],
 			[
 				"save pro",
@@ -256,6 +304,14 @@
 	],
 	"file_history":
 	[
+		"/home/j0sh/Documents/projects/tinyfpgaBX/uart-loopback/uart_loopback_sim.py",
+		"/home/j0sh/Documents/projects/tinyfpgaBX/uart-loopback/uart_loopback.py",
+		"/home/j0sh/Documents/projects/tinyfpgaBX/nmigen/uart_loopback.py",
+		"/home/j0sh/.config/sublime-text-3/Packages/Alignment/Default (Linux).sublime-keymap",
+		"/home/j0sh/.config/sublime-text-3/Packages/User/Default (Linux).sublime-keymap",
+		"/home/j0sh/Documents/projects/tinyfpgaBX/uart-loopback/nmigen_examples_uart.py",
+		"/home/j0sh/Documents/projects/tinyfpgaBX/litex-buildenv/doc/architecture.dia",
+		"/home/j0sh/Documents/projects/tinyfpgaBX/uart-loopback/Pipfile.lock",
 		"/home/j0sh/Documents/projects/tinyfpgaBX/nmigen/nmigen/_utils.py",
 		"/home/j0sh/Documents/projects/tinyfpgaBX/nmigen/nmigen/lib/coding.py",
 		"/home/j0sh/Documents/projects/tinyfpgaBX/nmigen/nmigen/lib/cdc.py",
@@ -375,13 +431,7 @@
 		"/home/j0sh/a.erl",
 		"/home/j0sh/b.erl",
 		"/home/j0sh/Downloads/Dehydrator_spool_spacer.gcode",
-		"/home/j0sh/Documents/code/3d_printing/marlin-cr10s/Marlin/ultralcd_impl_DOGM.h",
-		"/home/j0sh/power_log.py",
-		"/home/j0sh/Documents/code/upower-python/upower_python/upower.py",
-		"/home/j0sh/power_log.sh",
-		"/home/j0sh/power_log.txt",
-		"/home/j0sh/test.hy",
-		"/home/j0sh/.bashrc_local"
+		"/home/j0sh/Documents/code/3d_printing/marlin-cr10s/Marlin/ultralcd_impl_DOGM.h"
 	],
 	"find":
 	{
@@ -399,6 +449,33 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"#",
+			"sim()",
+			"rx_ack",
+			"WAIT_TO_TX",
+			"rx_ack",
+			"x.eq",
+			"odata",
+			"signal",
+			"=",
+			"self",
+			"uart_pins.rx",
+			"()",
+			"=",
+			",",
+			"=",
+			" = ",
+			"yourmodule",
+			"UARtLoopback",
+			"odata",
+			"inpins",
+			"rx_ack",
+			"tx_rdy",
+			"UARDLoopback",
+			"sync",
+			"tx_ack",
+			"Blinky",
+			"nmigen-boards"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -416,8 +493,126 @@
 	"groups":
 	[
 		{
+			"selected": 2,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "Pipfile",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 278,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								228,
+								228
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "nmigen_examples_uart.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4454,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "uart_loopback.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3474,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "notes.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1368,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"auto_name": "notes.txt",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
 			]
 		}
 	],

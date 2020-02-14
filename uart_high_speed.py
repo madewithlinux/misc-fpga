@@ -48,36 +48,51 @@ class UARTCopy(Elaboratable):
         return m
 
 
-class UARTLoopback(Elaboratable):
-    def __init__(self, divisor=int(16e6//9600)):
-        self.uart = UART(divisor=divisor)
+class UARTHighSpeed(Elaboratable):
+    def __init__(self, divisor=int(16e6//9600), fast_divisor=5):
+        self.divisor = divisor
+        self.fast_divisor = fast_divisor
         self.uart_tx = Signal()
         self.uart_rx = Signal()
+        self.uart_high_tx = Signal()
+        self.uart_high_rx = Signal()
+        self.uart_low = UART(divisor=self.divisor)
+        self.uart_high = UART(divisor=self.fast_divisor)
 
     def elaborate(self, platform):
         m = Module()
 
-        uart = self.uart
-        m.submodules += uart
+        uart_low = self.uart_low
+        uart_high = self.uart_high
 
-        m.d.comb += uart.rx_i.eq(self.uart_rx)
-        m.d.comb += self.uart_tx.eq(uart.tx_o)
+        m.submodules += uart_low
+        m.submodules += uart_high
 
-        m.submodules += UARTCopy(uart, uart)
+        m.d.comb += uart_low.rx_i.eq(self.uart_rx)
+        m.d.comb += self.uart_tx.eq(uart_low.tx_o)
+        m.d.comb += uart_high.rx_i.eq(self.uart_high_rx)
+        m.d.comb += self.uart_high_tx.eq(uart_high.tx_o)
+
+        copy_low_high = UARTCopy(uart_low, uart_high)
+        copy_high_low = UARTCopy(uart_high, uart_low)
+        m.submodules += copy_low_high
+        m.submodules += copy_high_low
+
         return m
 
 
-
 def simulate():
-    uart_baud = 9600
-    sim_clock_freq = uart_baud * 4
     from nmigen.back.pysim import Simulator, Delay, Settle
+    uart_baud = 9600
+    sim_clock_freq = uart_baud * 32
+
     m = Module()
     uart_tx = Signal()
     uart_rx = Signal()
-    m.submodules.uart_loopback = uart_loopback = UARTLoopback(divisor=int(sim_clock_freq/uart_baud))
-    m.d.comb += uart_tx.eq(uart_loopback.uart_tx)
-    m.d.comb += uart_loopback.uart_rx.eq(uart_rx)
+    m.submodules.uart_high_speed = uart_high_speed = UARTHighSpeed(divisor=int(sim_clock_freq/uart_baud))
+    m.d.comb += uart_tx.eq(uart_high_speed.uart_tx)
+    m.d.comb += uart_high_speed.uart_rx.eq(uart_rx)
+    m.d.comb += uart_high_speed.uart_high_rx.eq(uart_high_speed.uart_high_tx)
 
     sim = Simulator(m)
     sim.add_clock(1/sim_clock_freq, domain="sync")
@@ -106,31 +121,5 @@ def simulate():
     with sim.write_vcd("test.vcd", "test.gtkw", traces=[uart_tx, uart_rx]):
         sim.run()
 
-def synthesize():
-    platform = TinyFPGABXPlatform()
-    platform.add_resources([UARTResource("uart", 0,
-        rx="A9", # 18
-        tx="C9", # 17
-    )])
-    platform.add_resources([UARTResource("uart", 1,
-        rx="A2", # pin 1
-        tx="A1", # pin 2
-    )])
-
-    class Top(Elaboratable):
-        def elaborate(self, platform):
-            uart_pins = platform.request("uart", 0)
-            uart_pins2 = platform.request("uart", 1)
-            m = Module()
-            m.submodules.uart_loopback = uart_loopback = UARTLoopback(divisor=int(16e6/115200))
-            m.d.comb += uart_pins.tx.eq(uart_loopback.uart_tx)
-            m.d.comb += uart_pins2.tx.eq(uart_loopback.uart_tx)
-            m.d.comb += uart_loopback.uart_rx.eq(uart_pins.rx & uart_pins2.rx)
-            return m
-    
-    platform.build(Top(), do_program=True)
-
 if __name__ == '__main__':
     simulate()
-    # synthesize()
-
