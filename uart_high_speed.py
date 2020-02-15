@@ -116,6 +116,40 @@ class LowHighSpeedLoopback(Elaboratable):
         ]
 
 
+def synthesize():
+    platform = TinyFPGABXPlatform()
+    uart_baud = 115200
+    platform.add_resources([UARTResource("uart", 0,
+        rx="A9", # 18
+        tx="C9", # 17
+    )])
+    platform.add_resources([UARTResource("uart", 1,
+        rx="A2", # pin 1
+        tx="A1", # pin 2
+    )])
+
+    class Top(Elaboratable):
+        def elaborate(self, platform):
+            uart_pins = platform.request("uart", 0)
+            uart_pins2 = platform.request("uart", 1)
+
+            m = Module()
+
+            m.submodules.uart_high_speed = uart_high_speed = UARTHighSpeedBridge(
+                divisor=int(16e6/uart_baud),
+                fast_divisor=16,
+            )
+
+            m.d.comb += uart_pins.tx.eq(uart_high_speed.uart_tx)
+            m.d.comb += uart_high_speed.uart_rx.eq(uart_pins.rx)
+            m.d.comb += uart_pins2.tx.eq(uart_high_speed.uart_high_tx)
+            m.d.comb += uart_high_speed.uart_high_rx.eq(uart_pins2.rx)
+            return m
+
+    platform.build(Top(), do_program=True)
+
+
+
 def simulate():
     from nmigen.back.pysim import Simulator, Delay, Settle
     uart_baud = 9600
@@ -157,5 +191,6 @@ def simulate():
         sim.run()
 
 if __name__ == '__main__':
-    simulate()
+    # simulate()
+    synthesize()
 
