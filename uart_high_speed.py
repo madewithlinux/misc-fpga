@@ -48,7 +48,7 @@ class UARTCopy(Elaboratable):
         return m
 
 
-class UARTHighSpeed(Elaboratable):
+class UARTHighSpeedBridge(Elaboratable):
     def __init__(self, divisor=int(16e6//9600), fast_divisor=5):
         self.divisor = divisor
         self.fast_divisor = fast_divisor
@@ -80,6 +80,41 @@ class UARTHighSpeed(Elaboratable):
 
         return m
 
+class LowHighSpeedLoopback(Elaboratable):
+    def __init__(self, divisor=int(16e6//9600), fast_divisor=5):
+        self.divisor = divisor
+        self.fast_divisor = fast_divisor
+        self.uart_tx = Signal()
+        self.uart_rx = Signal()
+        self.bridge = UARTHighSpeedBridge(divisor, fast_divisor)
+        # self.uart_high_tx = self.bridge.uart_high_tx
+        # self.uart_high_rx = self.bridge.uart_high_rx
+        self.uart_high = UART(divisor=self.fast_divisor)
+        self.fast_loopback = UARTCopy(self.uart_high, self.uart_high)
+
+    def elaborate(self, platform):
+        m = Module()
+
+        m.submodules += self.bridge
+        m.submodules += self.uart_high
+        m.submodules += self.fast_loopback
+
+        m.d.comb += self.bridge.uart_rx.eq(self.uart_rx)
+        m.d.comb += self.uart_tx.eq(self.bridge.uart_tx)
+
+        m.d.comb += self.uart_high.rx_i.eq(self.bridge.uart_high_tx)
+        m.d.comb += self.bridge.uart_high_rx.eq(self.uart_high.tx_o)
+
+        return m
+
+    def ports(self):
+        return [
+            self.uart_tx,
+            self.uart_rx,
+            self.uart_high.tx_o,
+            self.uart_high.rx_i,
+        ]
+
 
 def simulate():
     from nmigen.back.pysim import Simulator, Delay, Settle
@@ -89,10 +124,9 @@ def simulate():
     m = Module()
     uart_tx = Signal()
     uart_rx = Signal()
-    m.submodules.uart_high_speed = uart_high_speed = UARTHighSpeed(divisor=int(sim_clock_freq/uart_baud))
+    m.submodules.uart_high_speed = uart_high_speed = LowHighSpeedLoopback(divisor=int(sim_clock_freq/uart_baud))
     m.d.comb += uart_tx.eq(uart_high_speed.uart_tx)
     m.d.comb += uart_high_speed.uart_rx.eq(uart_rx)
-    m.d.comb += uart_high_speed.uart_high_rx.eq(uart_high_speed.uart_high_tx)
 
     sim = Simulator(m)
     sim.add_clock(1/sim_clock_freq, domain="sync")
@@ -118,8 +152,10 @@ def simulate():
                 yield uart_tick
 
     sim.add_process(process) # or sim.add_sync_process(process), see below
-    with sim.write_vcd("test.vcd", "test.gtkw", traces=[uart_tx, uart_rx]):
+    # with sim.write_vcd("test.vcd", "test.gtkw", traces=[uart_tx, uart_rx]):
+    with sim.write_vcd("test.vcd", "test.gtkw", traces=uart_high_speed.ports()):
         sim.run()
 
 if __name__ == '__main__':
     simulate()
+
